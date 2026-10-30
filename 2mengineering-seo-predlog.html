@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Predlog za SEO — 2M Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#070B0F;
+  --bg:#0A1016;
+  --surface:#111A22;
+  --surface-2:#16212B;
+  --line:rgba(255,255,255,.08);
+  --line-strong:rgba(255,255,255,.14);
+  --text:#E8EEF4;
+  --text-dim:#9DACBB;
+  --text-faint:#6C7D8D;
+  --accent:#2DD4BF;
+  --accent-deep:#0E8F82;
+  --gold:#F0B429;
+  --danger:#F0656F;
+  --radius:16px;
+  --maxw:1120px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  font-size:16.5px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,.num,.eyebrow{font-family:'Manrope',system-ui,sans-serif}
+h1,h2,h3,h4{line-height:1.15;margin:0;letter-spacing:-.02em}
+p{margin:0}
+a{color:var(--accent);text-decoration:none}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+section{padding:84px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:20px;
+}
+.eyebrow::before{content:"";width:22px;height:1.5px;background:var(--accent);display:block}
+h2{font-size:clamp(28px,4vw,40px);font-weight:800;margin-bottom:16px}
+.lede{color:var(--text-dim);font-size:17.5px;max-width:720px}
+.sec-head{margin-bottom:48px}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(900px 480px at 12% -8%, rgba(45,212,191,.16), transparent 62%),
+    radial-gradient(760px 420px at 92% 6%, rgba(240,180,41,.10), transparent 60%),
+    var(--ink);
+  border-bottom:1px solid var(--line);
+  padding:0;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse at 50% 0%,#000 25%,transparent 78%);
+  -webkit-mask-image:radial-gradient(ellipse at 50% 0%,#000 25%,transparent 78%);
+  opacity:.5;
+}
+.hero-inner{position:relative;z-index:1;padding:92px 0 76px}
+.brandline{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint);
+  font-weight:600;margin-bottom:38px;
+}
+.brandline .dot{width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.hero h1{
+  font-size:clamp(36px,6.2vw,64px);font-weight:800;letter-spacing:-.035em;
+  max-width:880px;
+}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero-sub{margin-top:26px;max-width:660px;color:var(--text-dim);font-size:18.5px}
+.price-pill{
+  display:inline-flex;align-items:baseline;gap:12px;margin-top:40px;
+  background:linear-gradient(135deg,rgba(240,180,41,.14),rgba(240,180,41,.04));
+  border:1px solid rgba(240,180,41,.34);
+  border-radius:999px;padding:13px 26px;
+}
+.price-pill b{font-family:'Manrope',system-ui,-apple-system,sans-serif;font-size:26px;font-weight:800;color:var(--gold);letter-spacing:-.02em}
+.price-pill span{font-size:13.5px;color:var(--text-dim);letter-spacing:.02em}
+
+.kpi-row{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  margin-top:64px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+}
+.kpi{background:rgba(10,16,22,.72);padding:26px 24px;backdrop-filter:blur(4px)}
+.kpi .num{display:block;font-size:34px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.kpi .num.bad{color:var(--danger)}
+.kpi .num.warn{color:var(--gold)}
+.kpi .lbl{display:block;margin-top:10px;font-size:13px;color:var(--text-faint);line-height:1.45}
+
+/* ---------- GENERIC CARDS ---------- */
+.grid{display:grid;gap:18px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.card{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:28px;
+}
+.card h3{font-size:18.5px;font-weight:700;margin-bottom:10px}
+.card p{color:var(--text-dim);font-size:15px}
+.card .tag{
+  display:inline-block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 10px;border-radius:6px;margin-bottom:16px;
+}
+.tag.crit{background:rgba(240,101,111,.14);color:var(--danger);border:1px solid rgba(240,101,111,.3)}
+.tag.med{background:rgba(240,180,41,.13);color:var(--gold);border:1px solid rgba(240,180,41,.3)}
+.tag.ok{background:rgba(45,212,191,.12);color:var(--accent);border:1px solid rgba(45,212,191,.3)}
+.card .impact{
+  margin-top:16px;padding-top:14px;border-top:1px solid var(--line);
+  font-size:13.5px;color:var(--text-faint);
+}
+.card .impact b{color:var(--text);font-weight:600}
+
+/* ---------- PROBLEM LIST ---------- */
+.plist{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+.prow{
+  display:grid;grid-template-columns:62px 1fr 150px;gap:20px;align-items:center;
+  padding:18px 24px;border-top:1px solid var(--line);
+}
+.prow:first-child{border-top:none}
+.prow .cnt{
+  font-family:'Manrope',system-ui,-apple-system,sans-serif;font-size:24px;font-weight:800;text-align:center;
+  color:var(--danger);letter-spacing:-.02em;
+}
+.prow .cnt.warn{color:var(--gold)}
+.prow .cnt.low{color:var(--text-faint)}
+.prow .what{font-size:15.5px;font-weight:600}
+.prow .what small{display:block;font-weight:400;color:var(--text-faint);font-size:13.5px;margin-top:3px;letter-spacing:0}
+.prow .fix{font-size:12.5px;color:var(--text-faint);text-align:right}
+.prow .fix b{display:block;color:var(--accent);font-weight:600;font-size:13px}
+
+/* ---------- TABLE ---------- */
+.tscroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:780px;font-size:14.5px}
+th,td{padding:15px 18px;text-align:left;border-top:1px solid var(--line)}
+thead th{
+  border-top:none;background:var(--surface-2);
+  font-family:'Manrope',system-ui,-apple-system,sans-serif;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint);
+  white-space:nowrap;
+}
+thead th.us{color:var(--accent)}
+tbody tr:hover{background:rgba(255,255,255,.018)}
+td.rowlab{font-weight:600;color:var(--text)}
+td.us{background:rgba(45,212,191,.05);font-weight:600}
+.yes{color:var(--accent);font-weight:600}
+.no{color:var(--danger);font-weight:600}
+.meh{color:var(--text-faint)}
+
+/* ---------- TIMELINE ---------- */
+.tl{position:relative;padding-left:34px}
+.tl::before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,var(--accent),rgba(45,212,191,.12))}
+.tli{position:relative;padding:0 0 38px}
+.tli:last-child{padding-bottom:0}
+.tli::before{
+  content:"";position:absolute;left:-33px;top:7px;width:14px;height:14px;border-radius:50%;
+  background:var(--bg);border:2.5px solid var(--accent);
+}
+.tli .when{
+  font-family:'Manrope',system-ui,-apple-system,sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:8px;
+}
+.tli h3{font-size:19px;font-weight:700;margin-bottom:12px}
+.tli ul{margin:0;padding-left:20px;color:var(--text-dim);font-size:15px}
+.tli ul li{margin-bottom:6px}
+.tli ul li::marker{color:var(--text-faint)}
+
+/* ---------- INCLUDED ---------- */
+.inc{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.inc-i{background:var(--surface);padding:24px 26px;display:flex;gap:16px}
+.inc-i .ck{
+  flex:0 0 24px;width:24px;height:24px;border-radius:7px;margin-top:2px;
+  background:rgba(45,212,191,.13);border:1px solid rgba(45,212,191,.34);
+  display:grid;place-items:center;color:var(--accent);font-size:13px;font-weight:700;
+}
+.inc-i h4{font-size:15.5px;font-weight:700;margin-bottom:5px}
+.inc-i p{font-size:14px;color:var(--text-dim)}
+
+/* ---------- PRICE BLOCK ---------- */
+.offer{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(640px 320px at 85% 10%, rgba(240,180,41,.13), transparent 60%),
+    linear-gradient(160deg,var(--surface-2),var(--surface));
+  border:1px solid rgba(240,180,41,.26);
+  border-radius:22px;padding:46px;
+}
+.offer-top{display:flex;justify-content:space-between;gap:40px;align-items:flex-start;flex-wrap:wrap}
+.offer .amount{font-family:'Manrope',system-ui,-apple-system,sans-serif;font-size:68px;font-weight:800;letter-spacing:-.045em;line-height:.95;color:var(--gold)}
+.offer .per{font-size:14px;color:var(--text-dim);margin-top:10px;letter-spacing:.04em}
+.offer h3{font-size:23px;font-weight:800;margin-bottom:14px;max-width:420px}
+.offer .note{color:var(--text-dim);font-size:15px;max-width:440px}
+.offer-split{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:38px;padding-top:34px;border-top:1px solid var(--line-strong)}
+.offer-split ul{margin:0;padding-left:0;list-style:none}
+.offer-split li{position:relative;padding-left:26px;margin-bottom:11px;font-size:14.5px;color:var(--text-dim)}
+.offer-split li::before{content:"✓";position:absolute;left:0;top:-1px;color:var(--accent);font-weight:700}
+.offer-split li.x::before{content:"—";color:var(--text-faint)}
+.offer-split h4{
+  font-family:'Manrope',system-ui,-apple-system,sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-faint);margin-bottom:16px;
+}
+
+/* ---------- RESULT ---------- */
+.res{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.res-i{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+.res-i .h{font-family:'Manrope',system-ui,-apple-system,sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.res-i p{font-size:15px;color:var(--text-dim)}
+.res-i strong{color:var(--text)}
+
+.callout{
+  border-left:3px solid var(--gold);
+  background:rgba(240,180,41,.055);
+  padding:22px 26px;border-radius:0 12px 12px 0;
+  color:var(--text-dim);font-size:15.5px;margin-top:34px;
+}
+.callout b{color:var(--text)}
+
+/* ---------- CTA ---------- */
+.cta{text-align:center;padding:92px 0 100px}
+.cta h2{max-width:720px;margin:0 auto 18px}
+.cta .lede{margin:0 auto 36px}
+.btn{
+  display:inline-block;background:var(--accent);color:#04211E;
+  font-family:'Manrope',system-ui,-apple-system,sans-serif;font-weight:800;font-size:16px;letter-spacing:-.01em;
+  padding:16px 38px;border-radius:999px;
+}
+.contacts{margin-top:30px;color:var(--text-faint);font-size:14.5px}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--text-faint);font-size:13px;text-align:center}
+
+@media (max-width:900px){
+  .kpi-row{grid-template-columns:repeat(2,1fr)}
+  .g3,.g2,.res,.inc,.offer-split{grid-template-columns:1fr}
+  .prow{grid-template-columns:48px 1fr;gap:14px}
+  .prow .fix{grid-column:2;text-align:left;margin-top:4px}
+  .offer{padding:30px}
+  .offer .amount{font-size:54px}
+  section{padding:62px 0}
+  .wrap{padding:0 20px}
+}
+
+@media print{
+  :root{--bg:#fff;--surface:#fff;--surface-2:#f4f6f8;--text:#101619;--text-dim:#44525c;--text-faint:#6b7a85;--line:#dde3e8;--line-strong:#cfd7de;--accent:#0E8F82;--gold:#A8730A;--danger:#B3303A;--ink:#fff}
+  body{font-size:11pt}
+  .hero::after{display:none}
+  .hero{background:#fff}
+  .kpi{background:#fff}
+  section{page-break-inside:avoid;padding:28px 0}
+  .offer{background:#fffdf7}
+  .btn{border:1px solid #0E8F82}
+}
+</style>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div class="brandline">
+      <span>2M Engineering</span><span class="dot"></span>
+      <span>2mengineering.rs</span><span class="dot"></span>
+      <span>Predlog za SEO · oktobar 2026.</span>
+    </div>
+    <h1>Vaš sajt je uredan i funkcionalan. <em>U Google pretrazi — gotovo nevidljiv.</em></h1>
+    <p class="hero-sub">Usluge su jasno predstavljene, kontakt je dostupan, sajt radi bez greške. Ipak, ne postoji nijedan link sa drugih sajtova ka vama, nijedna objavljena cena i nijedan odgovor na pitanja koja vaši klijenti zaista pretražuju. Konkurencija sve to ima — i zbog toga upiti odlaze njima.</p>
+    <div class="price-pill"><b>400 €</b><span>mesečno · kompletna SEO optimizacija, sve izrade na sajtu uključene</span></div>
+
+    <div class="kpi-row">
+      <div class="kpi"><span class="num bad">1,9</span><span class="lbl">Domain Rating<br>(autoritet domena, skala 0–100)</span></div>
+      <div class="kpi"><span class="num bad">0</span><span class="lbl">linkova sa drugih sajtova<br>ka stranici video nadzora</span></div>
+      <div class="kpi"><span class="num warn">38</span><span class="lbl">tehničkih i sadržajnih<br>nedostataka na 12 stranica</span></div>
+      <div class="kpi"><span class="num warn">12</span><span class="lbl">stranica ukupno —<br>konkurenti imaju 20 do 40</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- 1. TRENUTNO STANJE -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Trenutno stanje</span>
+      <h2>Tri nalaza potvrđena merenjem</h2>
+      <p class="lede">Nije reč o utisku. Sajt je prošao kroz naš tehnički audit (12 stranica), a profil linkova proveren je u alatu Ahrefs. U nastavku su konkretni podaci.</p>
+    </div>
+
+    <div class="grid g3">
+      <div class="card">
+        <span class="tag crit">Autoritet</span>
+        <h3>Google vaš domen ne prepoznaje</h3>
+        <p>Domain Rating iznosi 1,9 od mogućih 100. Nijedan drugi sajt ne upućuje na stranicu video nadzora — ni katalog, ni partner, ni specijalizovani portal. Za pretraživač to znači: preduzeće bez potvrde iz spoljnih izvora.</p>
+        <div class="impact"><b>Posledica:</b> i kada je stranica dobro napisana, ispred nje se pozicionira svaki konkurent koji ima dvadesetak spominjanja na mreži.</div>
+      </div>
+      <div class="card">
+        <span class="tag crit">Sadržaj</span>
+        <h3>Stranice su prekratke</h3>
+        <p>Stranica video nadzora sadrži oko <b>360 reči</b> sopstvenog teksta. Početna — 139 reči. Kontakt — 19. Računarske mreže — 39. Konkurent koji zauzima prvu poziciju ima između 1.300 i 4.500 reči po stranici.</p>
+        <div class="impact"><b>Posledica:</b> pretraživač nema dovoljno sadržaja koji bi rangirao. Prednost dobija stranica koja na pitanje odgovara, a ne ona koja ga samo pominje.</div>
+      </div>
+      <div class="card">
+        <span class="tag med">Konverzija</span>
+        <h3>Nijedna cena nije objavljena</h3>
+        <p>Naslov odeljka glasi „Ugradnja kamera cena“, a ispod njega nema nijednog podatka — odeljak je prazan. Nema paketa, nema oznake „od ... €“, nema kalkulatora, nema odgovora na najčešća pitanja.</p>
+        <div class="impact"><b>Posledica:</b> posetilac koji traži cenu odlazi kod onoga ko ju je prikazao. Konkurent objavljuje pakete od 759 €, 1.299 € i 2.499 €.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. TEHNIKA -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Tehnički audit</span>
+      <h2>38 nedostataka na 12 stranica</h2>
+      <p class="lede">Pojedinačno, nijedan od njih nije presudan. Zajedno, oni su razlog zbog kojeg sajt stagnira. Najveći deo otklanja se u prvih trideset dana.</p>
+    </div>
+
+    <div class="plist">
+      <div class="prow">
+        <div class="cnt">12</div>
+        <div class="what">Nedostaju bezbednosna HTTP zaglavlja
+          <small>HSTS, Content-Security-Policy, X-Frame-Options i X-Content-Type-Options — na svih 12 stranica</small></div>
+        <div class="fix"><b>1. mesec</b>podešavanje servera</div>
+      </div>
+      <div class="prow">
+        <div class="cnt warn">12</div>
+        <div class="what">Nijedna stranica nije evidentirana u mapi sajta
+          <small>Google nema spisak vaših stranica, pa indeksiranje novih zavisi od slučaja</small></div>
+        <div class="fix"><b>1. mesec</b>sitemap.xml i Search Console</div>
+      </div>
+      <div class="prow">
+        <div class="cnt warn">6</div>
+        <div class="what">Meta opis je prekratak ili prepisan iz naslova
+          <small>Na šest stranica opis samo ponavlja naslov („Pocetna | 2M Engineering“), pa u rezultatima pretrage deluje kao duplikat</small></div>
+        <div class="fix"><b>1. mesec</b>izrada opisa</div>
+      </div>
+      <div class="prow">
+        <div class="cnt warn">4</div>
+        <div class="what">Nedovoljan obim teksta
+          <small>Početna 139 reči · Kontakt 19 · Računarske mreže 39 · Kopiranje tagova 291</small></div>
+        <div class="fix"><b>2.–3. mesec</b>prerada stranica</div>
+      </div>
+      <div class="prow">
+        <div class="cnt warn">3</div>
+        <div class="what">Više od jednog H1 naslova na stranici
+          <small>/interfoni/ · /interfoni/video-interfon/ · /kontrola-pristupa/ — pretraživač ne može da odredi glavnu temu</small></div>
+        <div class="fix"><b>1. mesec</b>izmena šablona</div>
+      </div>
+      <div class="prow">
+        <div class="cnt warn">3</div>
+        <div class="what">Naslovi (title) prekratki, jedan predugačak
+          <small>Početna 24 znaka, Kontakt 24, Pametna kuća 29 · Kopiranje tagova 69 znakova (Google prikazuje oko 60)</small></div>
+        <div class="fix"><b>1. mesec</b>novi naslovi</div>
+      </div>
+      <div class="prow">
+        <div class="cnt low">1</div>
+        <div class="what">Kanonska oznaka upućuje na drugu stranicu
+          <small>Na /interfoni/video-interfon/ oznaka canonical pokazuje na /interfoni/, čime stranica sama sebe isključuje iz pretrage</small></div>
+        <div class="fix"><b>1. mesec</b>jedna izmena</div>
+      </div>
+      <div class="prow">
+        <div class="cnt low">11</div>
+        <div class="what">Slike bez alt opisa
+          <small>Osam od dvanaest na stranici „Ugradnja interfona“, tri od pet na „Električar Beograd“. Deo postojećih alt opisa preuzet je sa drugih sajtova („Prevz Slovenija“, „rezervacija karte“).</small></div>
+        <div class="fix"><b>1.–2. mesec</b>opisi slika</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <b>Dva nalaza zaslužuju posebnu pažnju.</b> Prvi: u podnožju sajta, pod naslovom „Korisni Linkovi“, nalaze se linkovi ka sajtovima koji nemaju veze sa vašom delatnošću — kombi prevoz, logopedski kabinet i prodaja slika na platnu. Najverovatnije su ostali iz šablona, ali ih Google tumači kao vaše preporuke i to umanjuje autoritet domena. Drugi: na celom sajtu izostaju srpski dijakritički znaci („kuce“ umesto „kuće“, „Pocetna“, „Racunarske mreze“), a korisnici u Srbiji pretražuju na oba načina. Trenutno dobijate samo jedan deo tih pretraga.
+    </div>
+  </div>
+</section>
+
+<!-- 3. KONKURENCIJA -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Konkurencija</span>
+      <h2>Čime raspolažu sajtovi koji su ispred vas</h2>
+      <p class="lede">Izdvojili smo četiri sajta koja se u Beogradu pojavljuju u rezultatima za upite „video nadzor“, „ugradnja kamera“ i „alarmni sistemi“, i uporedili ih sa vašim — prema parametrima koje vrednuju i pretraživač i potencijalni klijent.</p>
+    </div>
+
+    <div class="tscroll">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th class="us">2M Engineering</th>
+            <th>svezavideonadzor.rs</th>
+            <th>adastrasecurity.rs</th>
+            <th>videonadzor-pro.rs</th>
+            <th>sigurnosnisistemi.rs</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rowlab">Stranica ukupno</td>
+            <td class="us no">12</td>
+            <td>preko 30 (usluge, vodiči, reference)</td>
+            <td>preko 20 (usluge i 6 članaka)</td>
+            <td class="meh">5</td>
+            <td>preko 25 (7 usluga, 16 podstranica)</td>
+          </tr>
+          <tr>
+            <td class="rowlab">Cene i paketi</td>
+            <td class="us no">nisu objavljeni</td>
+            <td class="yes">cenovnik u PDF-u i kalkulator</td>
+            <td class="yes">tri paketa: 759 / 1.299 / 2.499 €</td>
+            <td class="no">nisu objavljeni</td>
+            <td class="meh">cena nakon izlaska na teren</td>
+          </tr>
+          <tr>
+            <td class="rowlab">Najčešća pitanja (FAQ)</td>
+            <td class="us no">nema</td>
+            <td class="yes">8 pitanja</td>
+            <td class="yes">14 pitanja</td>
+            <td class="no">nema</td>
+            <td class="yes">4 pitanja i posebna stranica</td>
+          </tr>
+          <tr>
+            <td class="rowlab">Blog i stručni tekstovi</td>
+            <td class="us no">nema</td>
+            <td class="yes">oko 15 tekstova</td>
+            <td class="yes">6 članaka</td>
+            <td class="no">nema</td>
+            <td class="yes">oko 10 tekstova</td>
+          </tr>
+          <tr>
+            <td class="rowlab">Licence (MUP, tehnička zaštita)</td>
+            <td class="us no">nisu prikazane</td>
+            <td class="yes">istaknute</td>
+            <td class="yes">istaknute</td>
+            <td class="yes">tri licence u PDF-u</td>
+            <td class="yes">posebna stranica</td>
+          </tr>
+          <tr>
+            <td class="rowlab">Reference i galerija radova</td>
+            <td class="us no">nema</td>
+            <td class="yes">stranica „Reference“</td>
+            <td class="meh">samo brojači</td>
+            <td class="meh">brojači 850+ / 130+</td>
+            <td class="no">nema</td>
+          </tr>
+          <tr>
+            <td class="rowlab">Brendovi opreme na sajtu</td>
+            <td class="us no">nisu navedeni</td>
+            <td class="yes">Hikvision, Dahua i drugi</td>
+            <td class="yes">Hikvision i Ajax (36 modela)</td>
+            <td class="meh">samo tipovi kamera</td>
+            <td class="yes">Paradox, Ajax, DSC i drugi</td>
+          </tr>
+          <tr>
+            <td class="rowlab">Garancija</td>
+            <td class="us meh">24 meseca, pomenuta u tekstu</td>
+            <td class="yes">3 godine, poseban odeljak</td>
+            <td class="yes">24 meseca, uz pakete</td>
+            <td class="meh">nije navedena</td>
+            <td class="yes">24 meseca, uz održavanje</td>
+          </tr>
+          <tr>
+            <td class="rowlab">Telefon u zaglavlju sajta</td>
+            <td class="us no">nema</td>
+            <td class="yes">dva broja</td>
+            <td class="yes">da</td>
+            <td class="yes">da</td>
+            <td class="yes">da</td>
+          </tr>
+          <tr>
+            <td class="rowlab">Linkovi sa drugih sajtova</td>
+            <td class="us no">0</td>
+            <td class="yes">RTS, katalozi, brendovi</td>
+            <td class="yes">članci i katalozi</td>
+            <td class="meh">malobrojni</td>
+            <td class="yes">katalozi i blog</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <b>Zaključak je povoljniji nego što na prvi pogled deluje.</b> Nijedan od ova četiri sajta nema objavljene recenzije klijenata, a samo jedan poseduje galeriju izvedenih radova. Nijedan nije nedostižan — oni su jednostavno objavili više stranica i transparentno prikazali cene. Reč je o doslednom radu, a ne o prednosti koja se ne može nadoknaditi.
+    </div>
+  </div>
+</section>
+
+<!-- 4. NEISKORIŠĆENI POTENCIJAL -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Neiskorišćeni potencijal</span>
+      <h2>Usluge koje obavljate, a koje Google ne vidi</h2>
+      <p class="lede">Nije reč o novim uslugama, već o onima koje već pružate, a za koje na sajtu ne postoji zasebna stranica. Svaka od njih predstavlja poseban tok upita.</p>
+    </div>
+
+    <div class="grid g3">
+      <div class="card">
+        <span class="tag crit">Link ne vodi nigde</span>
+        <h3>Alarmni sistemi</h3>
+        <p>Na početnoj stranici navedeni su među uslugama, ali link vodi na prazan cilj. Konkurent za isti upit prikazuje ponudu „od 499 €“ i po tom osnovu prima upite.</p>
+        <div class="impact"><b>Predlog:</b> potpuna stranica usluge, sa paketima i najčešćim pitanjima</div>
+      </div>
+      <div class="card">
+        <span class="tag med">Nema stranice</span>
+        <h3>Servis i popravka video nadzora</h3>
+        <p>Za interfone postoji posebna stranica servisa i ona je trenutno najobimnija na sajtu (1.286 reči). Za kamere takva stranica ne postoji, a upit „servis video nadzora“ po pravilu je hitan.</p>
+        <div class="impact"><b>Predlog:</b> ista struktura kao na stranici servisa interfona</div>
+      </div>
+      <div class="card">
+        <span class="tag med">Nema stranice</span>
+        <h3>Video nadzor za firme, lokale i zgrade</h3>
+        <p>Sve je trenutno objedinjeno na jednoj stranici, u vidu pasusa. Vlasnik lokala i skupština stanara imaju različite potrebe i različito formulišu upit.</p>
+        <div class="impact"><b>Predlog:</b> tri odvojene stranice, prema tipu objekta</div>
+      </div>
+      <div class="card">
+        <span class="tag med">Nema stranica</span>
+        <h3>Hikvision, Dahua i Ajax</h3>
+        <p>Korisnici pretražuju opremu po nazivu brenda. Konkurent na jednoj stranici prikazuje 36 modela. Vi tu opremu ugrađujete, ali je na sajtu ne pominjete.</p>
+        <div class="impact"><b>Predlog:</b> posebna stranica po brendu, sa modelima</div>
+      </div>
+      <div class="card">
+        <span class="tag med">Nema stranica</span>
+        <h3>Opštine i naselja</h3>
+        <p>Na stranici kopiranja tagova već navodite Zvezdaru, Mirijevo, Palilulu, Karaburmu, Vračar i Višnjičku Banju. Iste lokacije jednako su relevantne za kamere i interfone.</p>
+        <div class="impact"><b>Predlog:</b> šest do osam lokalnih stranica</div>
+      </div>
+      <div class="card">
+        <span class="tag crit">Nije uspostavljeno</span>
+        <h3>Google poslovni profil i mapa</h3>
+        <p>Na sajtu nema mape, poslovni profil na Google-u nije uspostavljen, recenzija nema. Za lokalnu uslugu to je najbrži izvor upita i jedini koji daje rezultat i pre pomaka u pozicijama.</p>
+        <div class="impact"><b>Predlog:</b> profil, fotografije i prvih deset recenzija</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. PLAN -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Plan rada</span>
+      <h2>Dinamika i redosled aktivnosti</h2>
+      <p class="lede">Najpre se otklanjaju nedostaci na postojećim stranicama — to je najisplativiji deo posla. Tek zatim se gradi nov sadržaj. Svakog meseca dobijate izveštaj sa obavljenim aktivnostima i izmerenim rezultatima.</p>
+    </div>
+
+    <div class="tl">
+      <div class="tli">
+        <div class="when">1. mesec · temelj</div>
+        <h3>Tehnička sanacija i uspostavljanje merenja</h3>
+        <ul>
+          <li>Postavljanje naloga Google Search Console i Google Analytics, radi praćenja rezultata od prvog dana</li>
+          <li>Izrada mape sajta, podešavanje datoteke robots.txt, bezbednosnih zaglavlja i kanonske oznake na stranici /video-interfon/</li>
+          <li>Novi naslovi i meta opisi za svih 12 stranica</li>
+          <li>Jedan H1 naslov po stranici, alt opisi slika i uklanjanje nepovezanih linkova iz podnožja</li>
+          <li>Uvođenje dijakritičkih znakova na celom sajtu, telefon i dugme za poziv u zaglavlju</li>
+          <li>Uspostavljanje Google poslovnog profila: podaci, fotografije, usluge i radno vreme</li>
+        </ul>
+      </div>
+      <div class="tli">
+        <div class="when">2. i 3. mesec · prodajni sadržaj</div>
+        <h3>Prerada ključnih stranica</h3>
+        <ul>
+          <li>Stranica video nadzora: sa 360 reči na potpun sadržaj — paketi, obim usluge i rok ugradnje</li>
+          <li>Blok sa cenama ili paketima „od ... €“; koje cene se objavljuju, određujemo u dogovoru sa vama</li>
+          <li>Deset do četrnaest najčešćih pitanja na ključnim stranicama, uz označavanje po standardu schema.org</li>
+          <li>Licence, garancija od 24 meseca i sertifikati, predstavljeni kao poseban blok poverenja</li>
+          <li>Galerija izvedenih radova i prve recenzije klijenata</li>
+        </ul>
+      </div>
+      <div class="tli">
+        <div class="when">3. do 5. mesec · širenje strukture</div>
+        <h3>Nove stranice usluga</h3>
+        <ul>
+          <li>Alarmni sistemi — potpuna stranica umesto linka koji ne vodi nigde</li>
+          <li>Servis i popravka sistema video nadzora</li>
+          <li>Video nadzor za firme, za lokale i za stambene zgrade</li>
+          <li>Stranice po brendovima: Hikvision, Dahua i Ajax</li>
+          <li>Unutrašnje povezivanje, tako da svaka stranica vodi ka sledećem koraku klijenta</li>
+        </ul>
+      </div>
+      <div class="tli">
+        <div class="when">4. do 8. mesec · lokalna vidljivost</div>
+        <h3>Opštine i naselja Beograda</h3>
+        <ul>
+          <li>Šest do osam stranica: Zvezdara, Vračar, Palilula, Novi Beograd, Zemun, Voždovac, Mirijevo i Karaburma</li>
+          <li>Svaka sa stvarnim sadržajem: izvedeni objekti, izlazak na teren i vreme dolaska</li>
+          <li>Prijava sajta u srpske poslovne kataloge i imenike</li>
+        </ul>
+      </div>
+      <div class="tli">
+        <div class="when">2. do 12. mesec · autoritet</div>
+        <h3>Izgradnja profila linkova</h3>
+        <ul>
+          <li>Od nultog stanja ka zdravom profilu: katalozi, proizvođači opreme, strukovni portali i partneri</li>
+          <li>Stručni tekstovi koji se prirodno citiraju (propisi o video nadzoru, izbor kamere, IP u odnosu na analogne sisteme)</li>
+          <li>Rad na recenzijama na Google poslovnom profilu, koje utiču i na pozicije i na odluku klijenta</li>
+        </ul>
+      </div>
+      <div class="tli">
+        <div class="when">Svakog meseca</div>
+        <h3>Izveštavanje i korekcija plana</h3>
+        <ul>
+          <li>Pozicije po ključnim upitima, poseta sajtu, broj poziva i primljenih upita</li>
+          <li>Pregled obavljenog posla, plan za naredni period i spisak onoga što nam je potrebno od vas</li>
+          <li>Kratak mesečni razgovor o rezultatima i prioritetima</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. ŠTA ULAZI -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Obim saradnje</span>
+      <h2>Šta obuhvata mesečni rad</h2>
+      <p class="lede">Na projektu rade SEO specijalista, autor tekstova i programer. Svi su uključeni u cenu — ne postoji poseban račun za izradu.</p>
+    </div>
+
+    <div class="inc">
+      <div class="inc-i"><div class="ck">✓</div><div><h4>Tehnički SEO</h4><p>Serverska zaglavlja, brzina učitavanja, indeksiranje, mapa sajta, kanonske oznake, strukturirani podaci (schema.org) i Core Web Vitals.</p></div></div>
+      <div class="inc-i"><div class="ck">✓</div><div><h4>Semantika i ključne reči</h4><p>Prikupljanje upita koje korisnici zaista pretražuju, raspoređivanje po stranicama i praćenje pozicija.</p></div></div>
+      <div class="inc-i"><div class="ck">✓</div><div><h4>Tekstovi i struktura stranica</h4><p>Pisanje i prerada stranica usluga, najčešćih pitanja i stručnih tekstova. Na srpskom jeziku, sa dijakritičkim znacima, bez mašinskog prevoda.</p></div></div>
+      <div class="inc-i"><div class="ck">✓</div><div><h4>Sve izrade na sajtu</h4><p>Nove stranice, blokovi sa cenama, galerije, forme, izmene šablona, dugmad i prilagođavanje za mobilne uređaje. <b>Uključeno u cenu od 400 €.</b></p></div></div>
+      <div class="inc-i"><div class="ck">✓</div><div><h4>Lokalni SEO</h4><p>Google poslovni profil, mape, poslovni katalozi, usaglašeni kontakt podaci i rad na recenzijama.</p></div></div>
+      <div class="inc-i"><div class="ck">✓</div><div><h4>Linkovi i spominjanja</h4><p>Katalozi, strukovni portali, partnerske stranice i proizvođači opreme. Profil gradimo od početka.</p></div></div>
+      <div class="inc-i"><div class="ck">✓</div><div><h4>Konverzija</h4><p>Telefon u zaglavlju, dugmad za poziv i WhatsApp, kraće forme i blokovi poverenja — da poseta rezultira upitom.</p></div></div>
+      <div class="inc-i"><div class="ck">✓</div><div><h4>Izveštavanje</h4><p>Mesečni izveštaj sa rezultatima i obavljenim poslom. Dostupni smo i između izveštaja.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. CENA -->
+<section>
+  <div class="wrap">
+    <div class="offer">
+      <div class="offer-top">
+        <div>
+          <h3>Kompletno vođenje SEO optimizacije sajta 2mengineering.rs</h3>
+          <p class="note">Jedan račun mesečno. Bez obračuna po satu, bez posebne stavke za programera i bez naknadnih faktura za dodatnu izradu.</p>
+        </div>
+        <div style="text-align:right">
+          <div class="amount">400 €</div>
+          <div class="per">mesečno · bez obaveze višegodišnjeg ugovora</div>
+        </div>
+      </div>
+
+      <div class="offer-split">
+        <div>
+          <h4>Uključeno u cenu</h4>
+          <ul>
+            <li>Tehnički SEO i održavanje sajta</li>
+            <li>Semantika i praćenje pozicija</li>
+            <li>Izrada svih tekstova i stranica</li>
+            <li><b>Rad programera, bez doplate</b></li>
+            <li>Nove stranice, blokovi, forme i galerije</li>
+            <li>Google poslovni profil i lokalni SEO</li>
+            <li>Izgradnja profila linkova</li>
+            <li>Mesečni izveštaj i konsultacije</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Nije obuhvaćeno</h4>
+          <ul>
+            <li class="x">Hosting i domen ostaju vaša obaveza (postojeći trošak)</li>
+            <li class="x">Plaćeno oglašavanje (Google Ads) nije predmet ove ponude</li>
+            <li class="x">Zakup linkova, ukoliko ga uopšte predložimo, sprovodi se isključivo uz vašu saglasnost i poseban budžet</li>
+            <li class="x">Fotografije izvedenih radova i podatke o licencama dostavljate vi</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <b>Zašto bez obaveze višegodišnjeg ugovora.</b> Rezultati SEO optimizacije vide se u merljivim podacima, a podaci stižu svakog meseca. Ukoliko nakon tri meseca ne vidite pomak u izveštaju, imate pun osnov da saradnju prekinete — i nećemo vas zadržavati ugovorom.
+    </div>
+  </div>
+</section>
+
+<!-- 8. REZULTAT -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Očekivani rezultati</span>
+      <h2>Realan vremenski okvir</h2>
+      <p class="lede">Ne obećavamo prvu poziciju za mesec dana; takvo obećanje ne bi bilo utemeljeno. U nastavku je ono što se zaista dešava i u kom roku.</p>
+    </div>
+
+    <div class="res">
+      <div class="res-i">
+        <div class="h">1. i 2. mesec</div>
+        <p><strong>Sajt postaje vidljiv pretraživaču.</strong> Tehnički nedostaci su otklonjeni, svih 12 stranica je ispravno indeksirano, Google poslovni profil je aktivan. Prvi upiti po pravilu stižu upravo preko mape, pre nego što se pozicije pomere.</p>
+      </div>
+      <div class="res-i">
+        <div class="h">3. do 5. mesec</div>
+        <p><strong>Rast po specifičnim upitima.</strong> Prerađene stranice i najčešća pitanja počinju da privlače konkretne pretrage („cena ugradnje kamera u stanu“, „servis interfona Zvezdara“). Reč je o upitima sa izraženom namerom kupovine.</p>
+      </div>
+      <div class="res-i">
+        <div class="h">6. do 12. mesec</div>
+        <p><strong>Nadmetanje za glavne upite.</strong> Sa 25 do 30 stranica, izgrađenim profilom linkova i prikupljenim recenzijama ulazite u konkurenciju za upite „video nadzor Beograd“ i „ugradnja kamera“ — tamo gde se trenutno nalaze pomenuta četiri sajta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <h2>Predlog je pred vama. Ostaje samo vaša odluka.</h2>
+    <p class="lede">Prvi korak je kratak razgovor: utvrđujemo koje su usluge za vas najisplativije, koje cene mogu da budu objavljene i kada počinjemo. Tehnička sanacija kreće već u prvoj nedelji.</p>
+    <a class="btn" href="#">Zakažite razgovor</a>
+    <div class="contacts">Timur Simonov · SEO · temsem2003@gmail.com · Telegram @Kkiriiiii</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Podaci su preuzeti iz tehničkog audita sajta 2mengineering.rs (12 stranica) i iz provere profila linkova u alatu Ahrefs, oktobar 2026.<br>
+    Analiza konkurencije: svezavideonadzor.rs, adastrasecurity.rs, videonadzor-pro.rs i sigurnosnisistemi.rs.
+  </div>
+</footer>
+
+</body>
+</html>
